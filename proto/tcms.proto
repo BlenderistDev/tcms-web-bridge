@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+option go_package = "tcms/pkg/tcms";
+
+package tcms;
+
+import "google/protobuf/empty.proto";
+
+service Tcms {
+  rpc AddAutomation(Automation) returns (Result) {};
+  rpc GetList(google.protobuf.Empty) returns (AutomationList) {};
+  rpc RemoveAutomation(RemoveAutomationRequest) returns (Result) {};
+}
+
+message Automation {
+  string id = 1;
+  repeated string triggers = 2;
+  Condition condition = 3;
+  repeated Action actions = 4;
+}
+
+message Condition {
+  string name = 1;
+  map<string, Mapping> mapping = 2;
+  repeated Condition subConditions = 3;
+}
+
+message Action {
+  string name = 1;
+  map<string, Mapping> mapping = 2;
+}
+
+message Mapping {
+  bool simple = 1;
+  string name = 2;
+  string value = 3;
+}
+
+message Result {
+  bool success = 1;
+  string error = 2;
+}
+
+message AutomationList {
+  repeated Automation automationList = 1;
+}
+
+message RemoveAutomationRequest {
+  string id = 1;
+}
