@@ -422,6 +422,446 @@ func (x *RemoveAutomationRequest) GetId() string {
 	return ""
 }
 
+type ActionList struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Actions []*ActionDescription `protobuf:"bytes,1,rep,name=actions,proto3" json:"actions,omitempty"`
+}
+
+func (x *ActionList) Reset() {
+	*x = ActionList{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_tcms_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ActionList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ActionList) ProtoMessage() {}
+
+func (x *ActionList) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_tcms_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ActionList.ProtoReflect.Descriptor instead.
+func (*ActionList) Descriptor() ([]byte, []int) {
+	return file_proto_tcms_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ActionList) GetActions() []*ActionDescription {
+	if x != nil {
+		return x.Actions
+	}
+	return nil
+}
+
+type ActionDescription struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name   string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Fields []*Field `protobuf:"bytes,2,rep,name=fields,proto3" json:"fields,omitempty"`
+}
+
+func (x *ActionDescription) Reset() {
+	*x = ActionDescription{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_tcms_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ActionDescription) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ActionDescription) ProtoMessage() {}
+
+func (x *ActionDescription) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_tcms_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ActionDescription.ProtoReflect.Descriptor instead.
+func (*ActionDescription) Descriptor() ([]byte, []int) {
+	return file_proto_tcms_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ActionDescription) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ActionDescription) GetFields() []*Field {
+	if x != nil {
+		return x.Fields
+	}
+	return nil
+}
+
+type Field struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name     string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Type     string `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	Required bool   `protobuf:"varint,3,opt,name=required,proto3" json:"required,omitempty"`
+}
+
+func (x *Field) Reset() {
+	*x = Field{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_tcms_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Field) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Field) ProtoMessage() {}
+
+func (x *Field) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_tcms_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Field.ProtoReflect.Descriptor instead.
+func (*Field) Descriptor() ([]byte, []int) {
+	return file_proto_tcms_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *Field) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Field) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *Field) GetRequired() bool {
+	if x != nil {
+		return x.Required
+	}
+	return false
+}
+
+type ConditionList struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Conditions []*ConditionDescription `protobuf:"bytes,1,rep,name=conditions,proto3" json:"conditions,omitempty"`
+}
+
+func (x *ConditionList) Reset() {
+	*x = ConditionList{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_tcms_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ConditionList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ConditionList) ProtoMessage() {}
+
+func (x *ConditionList) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_tcms_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ConditionList.ProtoReflect.Descriptor instead.
+func (*ConditionList) Descriptor() ([]byte, []int) {
+	return file_proto_tcms_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *ConditionList) GetConditions() []*ConditionDescription {
+	if x != nil {
+		return x.Conditions
+	}
+	return nil
+}
+
+type ConditionDescription struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Fields               []*Field `protobuf:"bytes,2,rep,name=fields,proto3" json:"fields,omitempty"`
+	MinSubConditionCount int32    `protobuf:"varint,3,opt,name=minSubConditionCount,proto3" json:"minSubConditionCount,omitempty"`
+	MaxSubConditionCount int32    `protobuf:"varint,4,opt,name=maxSubConditionCount,proto3" json:"maxSubConditionCount,omitempty"`
+}
+
+func (x *ConditionDescription) Reset() {
+	*x = ConditionDescription{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_tcms_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ConditionDescription) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ConditionDescription) ProtoMessage() {}
+
+func (x *ConditionDescription) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_tcms_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ConditionDescription.ProtoReflect.Descriptor instead.
+func (*ConditionDescription) Descriptor() ([]byte, []int) {
+	return file_proto_tcms_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *ConditionDescription) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ConditionDescription) GetFields() []*Field {
+	if x != nil {
+		return x.Fields
+	}
+	return nil
+}
+
+func (x *ConditionDescription) GetMinSubConditionCount() int32 {
+	if x != nil {
+		return x.MinSubConditionCount
+	}
+	return 0
+}
+
+func (x *ConditionDescription) GetMaxSubConditionCount() int32 {
+	if x != nil {
+		return x.MaxSubConditionCount
+	}
+	return 0
+}
+
+type TriggerList struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Triggers []*TriggerDescription `protobuf:"bytes,1,rep,name=triggers,proto3" json:"triggers,omitempty"`
+}
+
+func (x *TriggerList) Reset() {
+	*x = TriggerList{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_tcms_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TriggerList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TriggerList) ProtoMessage() {}
+
+func (x *TriggerList) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_tcms_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TriggerList.ProtoReflect.Descriptor instead.
+func (*TriggerList) Descriptor() ([]byte, []int) {
+	return file_proto_tcms_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *TriggerList) GetTriggers() []*TriggerDescription {
+	if x != nil {
+		return x.Triggers
+	}
+	return nil
+}
+
+type TriggerDescription struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name   string                      `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Fields []*TriggerDescription_Field `protobuf:"bytes,2,rep,name=fields,proto3" json:"fields,omitempty"`
+}
+
+func (x *TriggerDescription) Reset() {
+	*x = TriggerDescription{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_tcms_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TriggerDescription) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TriggerDescription) ProtoMessage() {}
+
+func (x *TriggerDescription) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_tcms_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TriggerDescription.ProtoReflect.Descriptor instead.
+func (*TriggerDescription) Descriptor() ([]byte, []int) {
+	return file_proto_tcms_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *TriggerDescription) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *TriggerDescription) GetFields() []*TriggerDescription_Field {
+	if x != nil {
+		return x.Fields
+	}
+	return nil
+}
+
+type TriggerDescription_Field struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name        string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Description string `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+}
+
+func (x *TriggerDescription_Field) Reset() {
+	*x = TriggerDescription_Field{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_proto_tcms_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TriggerDescription_Field) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TriggerDescription_Field) ProtoMessage() {}
+
+func (x *TriggerDescription_Field) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_tcms_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TriggerDescription_Field.ProtoReflect.Descriptor instead.
+func (*TriggerDescription_Field) Descriptor() ([]byte, []int) {
+	return file_proto_tcms_proto_rawDescGZIP(), []int{13, 0}
+}
+
+func (x *TriggerDescription_Field) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *TriggerDescription_Field) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
 var File_proto_tcms_proto protoreflect.FileDescriptor
 
 var file_proto_tcms_proto_rawDesc = []byte{
@@ -477,20 +917,76 @@ var file_proto_tcms_proto_rawDesc = []byte{
 	0x6e, 0x4c, 0x69, 0x73, 0x74, 0x22, 0x29, 0x0a, 0x17, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x41,
 	0x75, 0x74, 0x6f, 0x6d, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64,
-	0x32, 0xb7, 0x01, 0x0a, 0x04, 0x54, 0x63, 0x6d, 0x73, 0x12, 0x31, 0x0a, 0x0d, 0x41, 0x64, 0x64,
-	0x41, 0x75, 0x74, 0x6f, 0x6d, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x10, 0x2e, 0x74, 0x63, 0x6d,
-	0x73, 0x2e, 0x41, 0x75, 0x74, 0x6f, 0x6d, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x1a, 0x0c, 0x2e, 0x74,
-	0x63, 0x6d, 0x73, 0x2e, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x00, 0x12, 0x39, 0x0a, 0x07,
-	0x47, 0x65, 0x74, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a,
-	0x14, 0x2e, 0x74, 0x63, 0x6d, 0x73, 0x2e, 0x41, 0x75, 0x74, 0x6f, 0x6d, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x4c, 0x69, 0x73, 0x74, 0x22, 0x00, 0x12, 0x41, 0x0a, 0x10, 0x52, 0x65, 0x6d, 0x6f, 0x76,
-	0x65, 0x41, 0x75, 0x74, 0x6f, 0x6d, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x1d, 0x2e, 0x74, 0x63,
-	0x6d, 0x73, 0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x41, 0x75, 0x74, 0x6f, 0x6d, 0x61, 0x74,
-	0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0c, 0x2e, 0x74, 0x63, 0x6d,
-	0x73, 0x2e, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x00, 0x42, 0x0f, 0x5a, 0x0d, 0x74, 0x63,
-	0x6d, 0x73, 0x2f, 0x70, 0x6b, 0x67, 0x2f, 0x74, 0x63, 0x6d, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x22, 0x3f, 0x0a, 0x0a, 0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x31,
+	0x0a, 0x07, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x17, 0x2e, 0x74, 0x63, 0x6d, 0x73, 0x2e, 0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x44, 0x65, 0x73,
+	0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x07, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e,
+	0x73, 0x22, 0x4c, 0x0a, 0x11, 0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x44, 0x65, 0x73, 0x63, 0x72,
+	0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x23, 0x0a, 0x06, 0x66, 0x69,
+	0x65, 0x6c, 0x64, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x74, 0x63, 0x6d,
+	0x73, 0x2e, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x52, 0x06, 0x66, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x22,
+	0x4b, 0x0a, 0x05, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x12, 0x0a, 0x04,
+	0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65,
+	0x12, 0x1a, 0x0a, 0x08, 0x72, 0x65, 0x71, 0x75, 0x69, 0x72, 0x65, 0x64, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x08, 0x52, 0x08, 0x72, 0x65, 0x71, 0x75, 0x69, 0x72, 0x65, 0x64, 0x22, 0x4b, 0x0a, 0x0d,
+	0x43, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x3a, 0x0a,
+	0x0a, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x1a, 0x2e, 0x74, 0x63, 0x6d, 0x73, 0x2e, 0x43, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69,
+	0x6f, 0x6e, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x0a, 0x63,
+	0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x22, 0xb7, 0x01, 0x0a, 0x14, 0x43, 0x6f,
+	0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69,
+	0x6f, 0x6e, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x23, 0x0a, 0x06, 0x66, 0x69, 0x65, 0x6c, 0x64, 0x73,
+	0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x74, 0x63, 0x6d, 0x73, 0x2e, 0x46, 0x69,
+	0x65, 0x6c, 0x64, 0x52, 0x06, 0x66, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x12, 0x32, 0x0a, 0x14, 0x6d,
+	0x69, 0x6e, 0x53, 0x75, 0x62, 0x43, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f,
+	0x75, 0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x14, 0x6d, 0x69, 0x6e, 0x53, 0x75,
+	0x62, 0x43, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12,
+	0x32, 0x0a, 0x14, 0x6d, 0x61, 0x78, 0x53, 0x75, 0x62, 0x43, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69,
+	0x6f, 0x6e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x05, 0x52, 0x14, 0x6d,
+	0x61, 0x78, 0x53, 0x75, 0x62, 0x43, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f,
+	0x75, 0x6e, 0x74, 0x22, 0x43, 0x0a, 0x0b, 0x54, 0x72, 0x69, 0x67, 0x67, 0x65, 0x72, 0x4c, 0x69,
+	0x73, 0x74, 0x12, 0x34, 0x0a, 0x08, 0x74, 0x72, 0x69, 0x67, 0x67, 0x65, 0x72, 0x73, 0x18, 0x01,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x74, 0x63, 0x6d, 0x73, 0x2e, 0x54, 0x72, 0x69, 0x67,
+	0x67, 0x65, 0x72, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x08,
+	0x74, 0x72, 0x69, 0x67, 0x67, 0x65, 0x72, 0x73, 0x22, 0x9f, 0x01, 0x0a, 0x12, 0x54, 0x72, 0x69,
+	0x67, 0x67, 0x65, 0x72, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12,
+	0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x12, 0x36, 0x0a, 0x06, 0x66, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x18, 0x02, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x74, 0x63, 0x6d, 0x73, 0x2e, 0x54, 0x72, 0x69, 0x67, 0x67,
+	0x65, 0x72, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x46, 0x69,
+	0x65, 0x6c, 0x64, 0x52, 0x06, 0x66, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x1a, 0x3d, 0x0a, 0x05, 0x46,
+	0x69, 0x65, 0x6c, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63,
+	0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64,
+	0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x32, 0xf6, 0x02, 0x0a, 0x04, 0x54,
+	0x63, 0x6d, 0x73, 0x12, 0x31, 0x0a, 0x0d, 0x41, 0x64, 0x64, 0x41, 0x75, 0x74, 0x6f, 0x6d, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x12, 0x10, 0x2e, 0x74, 0x63, 0x6d, 0x73, 0x2e, 0x41, 0x75, 0x74, 0x6f,
+	0x6d, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x1a, 0x0c, 0x2e, 0x74, 0x63, 0x6d, 0x73, 0x2e, 0x52, 0x65,
+	0x73, 0x75, 0x6c, 0x74, 0x22, 0x00, 0x12, 0x39, 0x0a, 0x07, 0x47, 0x65, 0x74, 0x4c, 0x69, 0x73,
+	0x74, 0x12, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x14, 0x2e, 0x74, 0x63, 0x6d, 0x73,
+	0x2e, 0x41, 0x75, 0x74, 0x6f, 0x6d, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x22,
+	0x00, 0x12, 0x41, 0x0a, 0x10, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x41, 0x75, 0x74, 0x6f, 0x6d,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x1d, 0x2e, 0x74, 0x63, 0x6d, 0x73, 0x2e, 0x52, 0x65, 0x6d,
+	0x6f, 0x76, 0x65, 0x41, 0x75, 0x74, 0x6f, 0x6d, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x0c, 0x2e, 0x74, 0x63, 0x6d, 0x73, 0x2e, 0x52, 0x65, 0x73, 0x75,
+	0x6c, 0x74, 0x22, 0x00, 0x12, 0x41, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x64, 0x69,
+	0x74, 0x69, 0x6f, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79,
+	0x1a, 0x13, 0x2e, 0x74, 0x63, 0x6d, 0x73, 0x2e, 0x43, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f,
+	0x6e, 0x4c, 0x69, 0x73, 0x74, 0x22, 0x00, 0x12, 0x3b, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x41, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79,
+	0x1a, 0x10, 0x2e, 0x74, 0x63, 0x6d, 0x73, 0x2e, 0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x4c, 0x69,
+	0x73, 0x74, 0x22, 0x00, 0x12, 0x3d, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x54, 0x72, 0x69, 0x67, 0x67,
+	0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x11,
+	0x2e, 0x74, 0x63, 0x6d, 0x73, 0x2e, 0x54, 0x72, 0x69, 0x67, 0x67, 0x65, 0x72, 0x4c, 0x69, 0x73,
+	0x74, 0x22, 0x00, 0x42, 0x0f, 0x5a, 0x0d, 0x74, 0x63, 0x6d, 0x73, 0x2f, 0x70, 0x6b, 0x67, 0x2f,
+	0x74, 0x63, 0x6d, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -505,39 +1001,59 @@ func file_proto_tcms_proto_rawDescGZIP() []byte {
 	return file_proto_tcms_proto_rawDescData
 }
 
-var file_proto_tcms_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_proto_tcms_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_proto_tcms_proto_goTypes = []interface{}{
-	(*Automation)(nil),              // 0: tcms.Automation
-	(*Condition)(nil),               // 1: tcms.Condition
-	(*Action)(nil),                  // 2: tcms.Action
-	(*Mapping)(nil),                 // 3: tcms.Mapping
-	(*Result)(nil),                  // 4: tcms.Result
-	(*AutomationList)(nil),          // 5: tcms.AutomationList
-	(*RemoveAutomationRequest)(nil), // 6: tcms.RemoveAutomationRequest
-	nil,                             // 7: tcms.Condition.MappingEntry
-	nil,                             // 8: tcms.Action.MappingEntry
-	(*emptypb.Empty)(nil),           // 9: google.protobuf.Empty
+	(*Automation)(nil),               // 0: tcms.Automation
+	(*Condition)(nil),                // 1: tcms.Condition
+	(*Action)(nil),                   // 2: tcms.Action
+	(*Mapping)(nil),                  // 3: tcms.Mapping
+	(*Result)(nil),                   // 4: tcms.Result
+	(*AutomationList)(nil),           // 5: tcms.AutomationList
+	(*RemoveAutomationRequest)(nil),  // 6: tcms.RemoveAutomationRequest
+	(*ActionList)(nil),               // 7: tcms.ActionList
+	(*ActionDescription)(nil),        // 8: tcms.ActionDescription
+	(*Field)(nil),                    // 9: tcms.Field
+	(*ConditionList)(nil),            // 10: tcms.ConditionList
+	(*ConditionDescription)(nil),     // 11: tcms.ConditionDescription
+	(*TriggerList)(nil),              // 12: tcms.TriggerList
+	(*TriggerDescription)(nil),       // 13: tcms.TriggerDescription
+	nil,                              // 14: tcms.Condition.MappingEntry
+	nil,                              // 15: tcms.Action.MappingEntry
+	(*TriggerDescription_Field)(nil), // 16: tcms.TriggerDescription.Field
+	(*emptypb.Empty)(nil),            // 17: google.protobuf.Empty
 }
 var file_proto_tcms_proto_depIdxs = []int32{
 	1,  // 0: tcms.Automation.condition:type_name -> tcms.Condition
 	2,  // 1: tcms.Automation.actions:type_name -> tcms.Action
-	7,  // 2: tcms.Condition.mapping:type_name -> tcms.Condition.MappingEntry
+	14, // 2: tcms.Condition.mapping:type_name -> tcms.Condition.MappingEntry
 	1,  // 3: tcms.Condition.subConditions:type_name -> tcms.Condition
-	8,  // 4: tcms.Action.mapping:type_name -> tcms.Action.MappingEntry
+	15, // 4: tcms.Action.mapping:type_name -> tcms.Action.MappingEntry
 	0,  // 5: tcms.AutomationList.automationList:type_name -> tcms.Automation
-	3,  // 6: tcms.Condition.MappingEntry.value:type_name -> tcms.Mapping
-	3,  // 7: tcms.Action.MappingEntry.value:type_name -> tcms.Mapping
-	0,  // 8: tcms.Tcms.AddAutomation:input_type -> tcms.Automation
-	9,  // 9: tcms.Tcms.GetList:input_type -> google.protobuf.Empty
-	6,  // 10: tcms.Tcms.RemoveAutomation:input_type -> tcms.RemoveAutomationRequest
-	4,  // 11: tcms.Tcms.AddAutomation:output_type -> tcms.Result
-	5,  // 12: tcms.Tcms.GetList:output_type -> tcms.AutomationList
-	4,  // 13: tcms.Tcms.RemoveAutomation:output_type -> tcms.Result
-	11, // [11:14] is the sub-list for method output_type
-	8,  // [8:11] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	8,  // 6: tcms.ActionList.actions:type_name -> tcms.ActionDescription
+	9,  // 7: tcms.ActionDescription.fields:type_name -> tcms.Field
+	11, // 8: tcms.ConditionList.conditions:type_name -> tcms.ConditionDescription
+	9,  // 9: tcms.ConditionDescription.fields:type_name -> tcms.Field
+	13, // 10: tcms.TriggerList.triggers:type_name -> tcms.TriggerDescription
+	16, // 11: tcms.TriggerDescription.fields:type_name -> tcms.TriggerDescription.Field
+	3,  // 12: tcms.Condition.MappingEntry.value:type_name -> tcms.Mapping
+	3,  // 13: tcms.Action.MappingEntry.value:type_name -> tcms.Mapping
+	0,  // 14: tcms.Tcms.AddAutomation:input_type -> tcms.Automation
+	17, // 15: tcms.Tcms.GetList:input_type -> google.protobuf.Empty
+	6,  // 16: tcms.Tcms.RemoveAutomation:input_type -> tcms.RemoveAutomationRequest
+	17, // 17: tcms.Tcms.GetConditionList:input_type -> google.protobuf.Empty
+	17, // 18: tcms.Tcms.GetActionList:input_type -> google.protobuf.Empty
+	17, // 19: tcms.Tcms.GetTriggerList:input_type -> google.protobuf.Empty
+	4,  // 20: tcms.Tcms.AddAutomation:output_type -> tcms.Result
+	5,  // 21: tcms.Tcms.GetList:output_type -> tcms.AutomationList
+	4,  // 22: tcms.Tcms.RemoveAutomation:output_type -> tcms.Result
+	10, // 23: tcms.Tcms.GetConditionList:output_type -> tcms.ConditionList
+	7,  // 24: tcms.Tcms.GetActionList:output_type -> tcms.ActionList
+	12, // 25: tcms.Tcms.GetTriggerList:output_type -> tcms.TriggerList
+	20, // [20:26] is the sub-list for method output_type
+	14, // [14:20] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() { file_proto_tcms_proto_init() }
@@ -630,6 +1146,102 @@ func file_proto_tcms_proto_init() {
 				return nil
 			}
 		}
+		file_proto_tcms_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ActionList); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_tcms_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ActionDescription); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_tcms_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Field); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_tcms_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ConditionList); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_tcms_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ConditionDescription); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_tcms_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TriggerList); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_tcms_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TriggerDescription); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_proto_tcms_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TriggerDescription_Field); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -637,7 +1249,7 @@ func file_proto_tcms_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_proto_tcms_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
