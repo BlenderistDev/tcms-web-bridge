@@ -56,13 +56,50 @@ func getDialogs(telegramClient telegramClient.TelegramClient) func(c *gin.Contex
 	}
 }
 
+// getConditions GET /condition
 func getConditions(tcms tcms.Tcms) func(c *gin.Context) {
 	return func(c *gin.Context) {
 		conditions, err := tcms.GetConditions(c)
 		if err != nil {
-			c.Error(err)
+			_ = c.Error(err)
 			return
 		}
 		c.JSON(200, conditions)
+	}
+}
+
+// getActions GET /action
+func getActions(tcms tcms.Tcms) func(c *gin.Context) {
+	return func(c *gin.Context) {
+		actions, err := tcms.GetActions(c)
+		if err != nil {
+			_ = c.Error(err)
+			return
+		}
+		c.JSON(200, actions)
+	}
+}
+
+// getTriggers GET /trigger
+func getTriggers(tcms tcms.Tcms) func(c *gin.Context) {
+	return func(c *gin.Context) {
+		triggers, err := tcms.GetTriggers(c)
+		if err != nil {
+			_ = c.Error(err)
+			return
+		}
+		c.JSON(200, triggers)
+	}
+}
+
+// getAutomations GET /automation
+func getAutomations(tcms tcms.Tcms) func(c *gin.Context) {
+	return func(c *gin.Context) {
+		automations, err := tcms.GetAutomations(c)
+		if err != nil {
+			_ = c.Error(err)
+			return
+		}
+		c.JSON(200, automations)
 	}
 }
