@@ -2,7 +2,10 @@ package tcms
 
 import (
 	"context"
+	"os"
 
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/protobuf/types/known/emptypb"
 	tcms2 "tcms-web-bridge/pkg/tcms"
 )
@@ -38,4 +41,17 @@ func NewTcms(client tcms2.TcmsClient) Tcms {
 	return tcms{
 		client: client,
 	}
+}
+
+func GetTcms() (Tcms, error) {
+	host := os.Getenv("TCMS_HOST")
+
+	conn, err := grpc.Dial(host, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		return nil, err
+	}
+
+	client := tcms2.NewTcmsClient(conn)
+
+	return NewTcms(client), nil
 }

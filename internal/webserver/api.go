@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/golang/protobuf/jsonpb"
 	"tcms-web-bridge/internal/dry"
+	"tcms-web-bridge/internal/tcms"
 	"tcms-web-bridge/internal/telegramClient"
 )
 
@@ -52,5 +53,16 @@ func getDialogs(telegramClient telegramClient.TelegramClient) func(c *gin.Contex
 		s, err := m.MarshalToString(dialogs)
 		dry.HandleError(err)
 		c.JSON(200, s)
+	}
+}
+
+func getConditions(tcms tcms.Tcms) func(c *gin.Context) {
+	return func(c *gin.Context) {
+		conditions, err := tcms.GetConditions(c)
+		if err != nil {
+			c.Error(err)
+			return
+		}
+		c.JSON(200, conditions)
 	}
 }
