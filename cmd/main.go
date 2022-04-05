@@ -22,13 +22,6 @@ func main() {
 		log.Fatal("cannot load config:", err)
 	}
 
-	//log := logrus.New()
-	// Load values from .env into the system
-	//err := godotenv.Load()
-	//if err != nil {
-	//	log.Error(err)
-	//}
-
 	telegram, err := telegramClient.NewTelegram(config)
 	dry.HandleErrorPanic(err)
 
