@@ -62,5 +62,7 @@ func StartWebServer(config config.Config, telegramClient telegramClient.Telegram
 	// websockets
 	router.GET("/ws", getWcHandler(addConsumer))
 
-	dry.HandleErrorPanic(router.Run(config.ApiHost))
+	if err := router.Run(config.ApiHost); err != nil {
+		panic(err)
+	}
 }
