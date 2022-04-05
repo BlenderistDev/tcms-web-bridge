@@ -8,29 +8,29 @@ import (
 )
 
 type Tcms interface {
-	getActions(ctx context.Context) (*tcms2.ActionList, error)
-	getConditions(ctx context.Context) (*tcms2.ConditionList, error)
-	getTriggers(ctx context.Context) (*tcms2.TriggerList, error)
-	getAutomations(ctx context.Context) (*tcms2.AutomationList, error)
+	GetActions(ctx context.Context) (*tcms2.ActionList, error)
+	GetConditions(ctx context.Context) (*tcms2.ConditionList, error)
+	GetTriggers(ctx context.Context) (*tcms2.TriggerList, error)
+	GetAutomations(ctx context.Context) (*tcms2.AutomationList, error)
 }
 
 type tcms struct {
 	client tcms2.TcmsClient
 }
 
-func (t tcms) getActions(ctx context.Context) (*tcms2.ActionList, error) {
+func (t tcms) GetActions(ctx context.Context) (*tcms2.ActionList, error) {
 	return t.client.GetActionList(ctx, &emptypb.Empty{})
 }
 
-func (t tcms) getConditions(ctx context.Context) (*tcms2.ConditionList, error) {
+func (t tcms) GetConditions(ctx context.Context) (*tcms2.ConditionList, error) {
 	return t.client.GetConditionList(ctx, &emptypb.Empty{})
 }
 
-func (t tcms) getTriggers(ctx context.Context) (*tcms2.TriggerList, error) {
+func (t tcms) GetTriggers(ctx context.Context) (*tcms2.TriggerList, error) {
 	return t.client.GetTriggerList(ctx, &emptypb.Empty{})
 }
 
-func (t tcms) getAutomations(ctx context.Context) (*tcms2.AutomationList, error) {
+func (t tcms) GetAutomations(ctx context.Context) (*tcms2.AutomationList, error) {
 	return t.client.GetList(ctx, &emptypb.Empty{})
 }
 
