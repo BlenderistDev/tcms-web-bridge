@@ -15,6 +15,9 @@ build:
 gen-telegramclient-mock:
 	@mockgen -source=internal/telegramClient/telegramClient.go -destination=internal/testing/telegramClient/telegramClient.go
 
+gen-tcms-mock:
+	@mockgen -source=pkg/tcms/tcms_grpc.pb.go -destination=internal/testing/tcms/tcms_grpc.pb.go
+
 gen-telegram:
 	@protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative proto/telegram.proto
 	@mv proto/telegram*.go pkg/telegram/
@@ -27,4 +30,5 @@ gen:
 	@make gen-tcms
 	@make gen-telegram
 	@make gen-telegramclient-mock
+	@make gen-tcms-mock
 
