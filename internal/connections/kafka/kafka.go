@@ -6,35 +6,17 @@ import (
 	"time"
 
 	kafka2 "github.com/segmentio/kafka-go"
+	"tcms-web-bridge/internal/config"
 )
 
-func CreateKafkaSubscription(addConsumer chan chan []uint8, errChan chan error, quit chan bool) {
+func CreateKafkaSubscription(config config.Config, addConsumer chan chan []uint8, errChan chan error, quit chan bool) {
 	var consumers []chan []uint8
 
-	kafkaURL, err := getKafkaHost()
-	if err != nil {
-		errChan <- err
-		return
-	}
-
-	topic, err := getKafkaTopic()
-	if err != nil {
-		errChan <- err
-		return
-	}
-
-	groupId, err := getKafkaGroupId()
-
-	if err != nil {
-		errChan <- err
-		return
-	}
-
-	brokers := strings.Split(kafkaURL, ",")
+	brokers := strings.Split(config.KafkaHost, ",")
 	reader := kafka2.NewReader(kafka2.ReaderConfig{
 		Brokers:           brokers,
-		GroupID:           groupId,
-		Topic:             topic,
+		GroupID:           config.KafkaGroupId,
+		Topic:             config.KafkaTopic,
 		MaxBytes:          10e6, // 10MB
 		MaxWait:           time.Millisecond * 10,
 		HeartbeatInterval: 1,

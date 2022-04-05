@@ -7,6 +7,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/protobuf/types/known/emptypb"
+	"tcms-web-bridge/internal/config"
 	"tcms-web-bridge/pkg/telegram"
 )
 
@@ -24,12 +25,8 @@ type telegramClient struct {
 	telegram telegram.TelegramClient
 }
 
-func NewTelegram() (TelegramClient, error) {
-	host, err := getTelegramBridgeHost()
-	if err != nil {
-		return nil, err
-	}
-	conn, err := grpc.Dial(host, grpc.WithTransportCredentials(insecure.NewCredentials()))
+func NewTelegram(config config.Config) (TelegramClient, error) {
+	conn, err := grpc.Dial(config.TelegramBridgeHost, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		return nil, err
 	}

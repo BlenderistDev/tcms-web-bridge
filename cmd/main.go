@@ -1,8 +1,10 @@
 package main
 
 import (
-	"github.com/joho/godotenv"
-	"github.com/sirupsen/logrus"
+	"log"
+	"os"
+
+	config2 "tcms-web-bridge/internal/config"
 	"tcms-web-bridge/internal/connections/kafka"
 	"tcms-web-bridge/internal/dry"
 	tcms2 "tcms-web-bridge/internal/tcms"
@@ -11,27 +13,36 @@ import (
 )
 
 func main() {
-	log := logrus.New()
-	// Load values from .env into the system
-	err := godotenv.Load()
+	wd, err := os.Getwd()
 	if err != nil {
-		log.Error(err)
+		panic(err)
+	}
+	config, err := config2.LoadConfig(wd)
+	if err != nil {
+		log.Fatal("cannot load config:", err)
 	}
 
-	telegram, err := telegramClient.NewTelegram()
+	//log := logrus.New()
+	// Load values from .env into the system
+	//err := godotenv.Load()
+	//if err != nil {
+	//	log.Error(err)
+	//}
+
+	telegram, err := telegramClient.NewTelegram(config)
 	dry.HandleErrorPanic(err)
 
 	addConsumer := make(chan chan []uint8)
 	quitKafka := make(chan bool)
 	kafkaError := make(chan error)
 
-	go kafka.CreateKafkaSubscription(addConsumer, kafkaError, quitKafka)
+	go kafka.CreateKafkaSubscription(config, addConsumer, kafkaError, quitKafka)
 
-	tcms, err := tcms2.GetTcms()
+	tcms, err := tcms2.GetTcms(config)
 	if err != nil {
 		panic(err)
 	}
-	go webserver.StartWebServer(telegram, tcms, addConsumer)
+	go webserver.StartWebServer(config, telegram, tcms, addConsumer)
 
 	select {}
 }

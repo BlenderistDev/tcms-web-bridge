@@ -3,6 +3,7 @@ package webserver
 import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"tcms-web-bridge/internal/config"
 	"tcms-web-bridge/internal/dry"
 	"tcms-web-bridge/internal/tcms"
 	"tcms-web-bridge/internal/telegramClient"
@@ -16,7 +17,7 @@ type signData struct {
 	Code string `json:"code" binding:"required"`
 }
 
-func StartWebServer(telegramClient telegramClient.TelegramClient, tcms tcms.Tcms, addConsumer chan chan []uint8) {
+func StartWebServer(config config.Config, telegramClient telegramClient.TelegramClient, tcms tcms.Tcms, addConsumer chan chan []uint8) {
 	router := gin.Default()
 
 	router.Use(cors.New(cors.Config{
@@ -58,7 +59,5 @@ func StartWebServer(telegramClient telegramClient.TelegramClient, tcms tcms.Tcms
 	// websockets
 	router.GET("/ws", getWcHandler(addConsumer))
 
-	host, err := getApiHost()
-	dry.HandleErrorPanic(err)
-	dry.HandleErrorPanic(router.Run(host))
+	dry.HandleErrorPanic(router.Run(config.ApiHost))
 }
