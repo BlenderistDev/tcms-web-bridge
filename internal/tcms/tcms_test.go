@@ -74,3 +74,17 @@ func TestTcms_GetAutomations(t *testing.T) {
 	dry.TestCheckEqual(t, expected, list)
 	dry.TestHandleError(t, err)
 }
+
+func TestTcms_AddAutomation(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+
+	ctx := context.Background()
+	automation := &tcms2.Automation{}
+
+	c := mock_tcms.NewMockTcmsClient(ctrl)
+	c.EXPECT().AddAutomation(gomock.Eq(ctx), gomock.Eq(automation))
+	tcms := NewTcms(c)
+	err := tcms.AddAutomation(ctx, automation)
+	dry.TestHandleError(t, err)
+}
