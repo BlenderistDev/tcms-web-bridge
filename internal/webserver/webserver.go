@@ -58,6 +58,7 @@ func StartWebServer(config config.Config, telegramClient telegramClient.Telegram
 
 	// POST
 	router.POST("/message", sendMessage(telegramClient))
+	router.POST("/automation", addAutomation(tcms))
 
 	// websockets
 	router.GET("/ws", getWcHandler(addConsumer))

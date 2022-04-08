@@ -6,6 +6,7 @@ import (
 	"tcms-web-bridge/internal/dry"
 	"tcms-web-bridge/internal/tcms"
 	"tcms-web-bridge/internal/telegramClient"
+	tcms2 "tcms-web-bridge/pkg/tcms"
 )
 
 type sendMessageData struct {
@@ -101,5 +102,23 @@ func getAutomations(tcms tcms.Tcms) func(c *gin.Context) {
 			return
 		}
 		c.JSON(200, automations)
+	}
+}
+
+// addAutomation POST /automation
+func addAutomation(tcms tcms.Tcms) func(c *gin.Context) {
+	return func(c *gin.Context) {
+		var automation tcms2.Automation
+
+		if err := c.BindJSON(&automation); err != nil {
+			_ = c.Error(err)
+			return
+		}
+
+		if err := tcms.AddAutomation(c, &automation); err != nil {
+			_ = c.Error(err)
+			return
+		}
+		c.JSON(200, gin.H{"status": "ok"})
 	}
 }
