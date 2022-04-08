@@ -157,6 +157,26 @@ func (mr *MockTcmsClientMockRecorder) RemoveAutomation(ctx, in interface{}, opts
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RemoveAutomation", reflect.TypeOf((*MockTcmsClient)(nil).RemoveAutomation), varargs...)
 }
 
+// UpdateAutomation mocks base method.
+func (m *MockTcmsClient) UpdateAutomation(ctx context.Context, in *tcms.UpdateAutomationRequest, opts ...grpc.CallOption) (*tcms.Result, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "UpdateAutomation", varargs...)
+	ret0, _ := ret[0].(*tcms.Result)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateAutomation indicates an expected call of UpdateAutomation.
+func (mr *MockTcmsClientMockRecorder) UpdateAutomation(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateAutomation", reflect.TypeOf((*MockTcmsClient)(nil).UpdateAutomation), varargs...)
+}
+
 // MockTcmsServer is a mock of TcmsServer interface.
 type MockTcmsServer struct {
 	ctrl     *gomock.Controller
@@ -268,6 +288,21 @@ func (m *MockTcmsServer) RemoveAutomation(arg0 context.Context, arg1 *tcms.Remov
 func (mr *MockTcmsServerMockRecorder) RemoveAutomation(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RemoveAutomation", reflect.TypeOf((*MockTcmsServer)(nil).RemoveAutomation), arg0, arg1)
+}
+
+// UpdateAutomation mocks base method.
+func (m *MockTcmsServer) UpdateAutomation(arg0 context.Context, arg1 *tcms.UpdateAutomationRequest) (*tcms.Result, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateAutomation", arg0, arg1)
+	ret0, _ := ret[0].(*tcms.Result)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateAutomation indicates an expected call of UpdateAutomation.
+func (mr *MockTcmsServerMockRecorder) UpdateAutomation(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateAutomation", reflect.TypeOf((*MockTcmsServer)(nil).UpdateAutomation), arg0, arg1)
 }
 
 // mustEmbedUnimplementedTcmsServer mocks base method.
