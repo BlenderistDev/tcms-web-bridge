@@ -34,15 +34,21 @@ func main() {
 
 	go kafka.CreateKafkaSubscription(config, addConsumer, kafkaError, quitKafka)
 
-	tcmsConn, err := grpc.Dial(config.TcmsHost, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	tcms, err := getTcmsClient(&config)
 	if err != nil {
 		panic(err)
 	}
-	tcms, err := tcms2.GetTcms(tcmsConn)
-	if err != nil {
-		panic(err)
-	}
+
 	go webserver.StartWebServer(config, telegram, tcms, addConsumer)
 
 	select {}
+}
+
+func getTcmsClient(config *config2.Config) (tcms2.Tcms, error) {
+	tcmsConn, err := grpc.Dial(config.TcmsHost, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		return nil, err
+	}
+	tcms := tcms2.GetTcms(tcmsConn)
+	return tcms, nil
 }

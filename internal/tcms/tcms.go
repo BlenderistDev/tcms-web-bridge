@@ -75,7 +75,7 @@ func newTcms(client tcms2.TcmsClient) Tcms {
 }
 
 // GetTcms return new tcms client
-func GetTcms(conn *grpc.ClientConn) (Tcms, error) {
+func GetTcms(conn *grpc.ClientConn) Tcms {
 	client := tcms2.NewTcmsClient(conn)
-	return newTcms(client), nil
+	return newTcms(client)
 }
