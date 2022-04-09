@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/golang/mock/gomock"
+	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"tcms-web-bridge/internal/dry"
 	mock_tcms "tcms-web-bridge/internal/testing/tcms"
@@ -21,7 +22,7 @@ func TestTcms_GetActions(t *testing.T) {
 
 	c := mock_tcms.NewMockTcmsClient(ctrl)
 	c.EXPECT().GetActionList(gomock.Eq(ctx), gomock.Eq(&emptypb.Empty{})).Return(expected, nil)
-	tcms := NewTcms(c)
+	tcms := newTcms(c)
 	list, err := tcms.GetActions(ctx)
 	dry.TestCheckEqual(t, expected, list)
 	dry.TestHandleError(t, err)
@@ -37,7 +38,7 @@ func TestTcms_GetConditions(t *testing.T) {
 
 	c := mock_tcms.NewMockTcmsClient(ctrl)
 	c.EXPECT().GetConditionList(gomock.Eq(ctx), gomock.Eq(&emptypb.Empty{})).Return(expected, nil)
-	tcms := NewTcms(c)
+	tcms := newTcms(c)
 	list, err := tcms.GetConditions(ctx)
 	dry.TestCheckEqual(t, expected, list)
 	dry.TestHandleError(t, err)
@@ -53,7 +54,7 @@ func TestTcms_GetTriggers(t *testing.T) {
 
 	c := mock_tcms.NewMockTcmsClient(ctrl)
 	c.EXPECT().GetTriggerList(gomock.Eq(ctx), gomock.Eq(&emptypb.Empty{})).Return(expected, nil)
-	tcms := NewTcms(c)
+	tcms := newTcms(c)
 	list, err := tcms.GetTriggers(ctx)
 	dry.TestCheckEqual(t, expected, list)
 	dry.TestHandleError(t, err)
@@ -69,7 +70,7 @@ func TestTcms_GetAutomations(t *testing.T) {
 
 	c := mock_tcms.NewMockTcmsClient(ctrl)
 	c.EXPECT().GetList(gomock.Eq(ctx), gomock.Eq(&emptypb.Empty{})).Return(expected, nil)
-	tcms := NewTcms(c)
+	tcms := newTcms(c)
 	list, err := tcms.GetAutomations(ctx)
 	dry.TestCheckEqual(t, expected, list)
 	dry.TestHandleError(t, err)
@@ -84,7 +85,7 @@ func TestTcms_AddAutomation(t *testing.T) {
 
 	c := mock_tcms.NewMockTcmsClient(ctrl)
 	c.EXPECT().AddAutomation(gomock.Eq(ctx), gomock.Eq(automation))
-	tcms := NewTcms(c)
+	tcms := newTcms(c)
 	err := tcms.AddAutomation(ctx, automation)
 	dry.TestHandleError(t, err)
 }
@@ -98,7 +99,7 @@ func TestTcms_UpdateAutomation(t *testing.T) {
 
 	c := mock_tcms.NewMockTcmsClient(ctrl)
 	c.EXPECT().UpdateAutomation(gomock.Eq(ctx), gomock.Eq(request))
-	tcms := NewTcms(c)
+	tcms := newTcms(c)
 	err := tcms.UpdateAutomation(ctx, request)
 	dry.TestHandleError(t, err)
 }
@@ -112,7 +113,7 @@ func TestTcms_RemoveAutomation(t *testing.T) {
 
 	c := mock_tcms.NewMockTcmsClient(ctrl)
 	c.EXPECT().RemoveAutomation(gomock.Eq(ctx), gomock.Eq(request))
-	tcms := NewTcms(c)
+	tcms := newTcms(c)
 	err := tcms.RemoveAutomation(ctx, request)
 	dry.TestHandleError(t, err)
 }
@@ -128,8 +129,14 @@ func TestTcms_GetAutomation(t *testing.T) {
 
 	c := mock_tcms.NewMockTcmsClient(ctrl)
 	c.EXPECT().GetOne(gomock.Eq(ctx), gomock.Eq(request)).Return(automation, nil)
-	tcms := NewTcms(c)
+	tcms := newTcms(c)
 	res, err := tcms.GetAutomation(ctx, request)
 	dry.TestHandleError(t, err)
 	dry.TestCheckEqual(t, automation, res)
+}
+
+func TestGetTcms(t *testing.T) {
+	conn := &grpc.ClientConn{}
+	_, err := GetTcms(conn)
+	dry.TestHandleError(t, err)
 }

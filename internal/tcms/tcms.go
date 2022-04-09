@@ -4,9 +4,7 @@ import (
 	"context"
 
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/protobuf/types/known/emptypb"
-	"tcms-web-bridge/internal/config"
 	tcms2 "tcms-web-bridge/pkg/tcms"
 )
 
@@ -69,21 +67,14 @@ func (t tcms) GetAutomation(ctx context.Context, request *tcms2.AutomationReques
 	return res, err
 }
 
-// NewTcms create new tcms client
-func NewTcms(client tcms2.TcmsClient) Tcms {
+func newTcms(client tcms2.TcmsClient) Tcms {
 	return tcms{
 		client: client,
 	}
 }
 
 // GetTcms return new tcms client
-func GetTcms(config config.Config) (Tcms, error) {
-	conn, err := grpc.Dial(config.TcmsHost, grpc.WithTransportCredentials(insecure.NewCredentials()))
-	if err != nil {
-		return nil, err
-	}
-
+func GetTcms(conn *grpc.ClientConn) (Tcms, error) {
 	client := tcms2.NewTcmsClient(conn)
-
-	return NewTcms(client), nil
+	return newTcms(client), nil
 }

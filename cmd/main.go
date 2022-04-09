@@ -4,6 +4,8 @@ import (
 	"log"
 	"os"
 
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 	config2 "tcms-web-bridge/internal/config"
 	"tcms-web-bridge/internal/connections/kafka"
 	tcms2 "tcms-web-bridge/internal/tcms"
@@ -32,7 +34,11 @@ func main() {
 
 	go kafka.CreateKafkaSubscription(config, addConsumer, kafkaError, quitKafka)
 
-	tcms, err := tcms2.GetTcms(config)
+	tcmsConn, err := grpc.Dial(config.TcmsHost, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		panic(err)
+	}
+	tcms, err := tcms2.GetTcms(tcmsConn)
 	if err != nil {
 		panic(err)
 	}
