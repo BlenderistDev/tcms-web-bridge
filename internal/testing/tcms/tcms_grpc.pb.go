@@ -117,6 +117,26 @@ func (mr *MockTcmsClientMockRecorder) GetList(ctx, in interface{}, opts ...inter
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetList", reflect.TypeOf((*MockTcmsClient)(nil).GetList), varargs...)
 }
 
+// GetOne mocks base method.
+func (m *MockTcmsClient) GetOne(ctx context.Context, in *tcms.AutomationRequest, opts ...grpc.CallOption) (*tcms.Automation, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "GetOne", varargs...)
+	ret0, _ := ret[0].(*tcms.Automation)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetOne indicates an expected call of GetOne.
+func (mr *MockTcmsClientMockRecorder) GetOne(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetOne", reflect.TypeOf((*MockTcmsClient)(nil).GetOne), varargs...)
+}
+
 // GetTriggerList mocks base method.
 func (m *MockTcmsClient) GetTriggerList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*tcms.TriggerList, error) {
 	m.ctrl.T.Helper()
@@ -258,6 +278,21 @@ func (m *MockTcmsServer) GetList(arg0 context.Context, arg1 *emptypb.Empty) (*tc
 func (mr *MockTcmsServerMockRecorder) GetList(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetList", reflect.TypeOf((*MockTcmsServer)(nil).GetList), arg0, arg1)
+}
+
+// GetOne mocks base method.
+func (m *MockTcmsServer) GetOne(arg0 context.Context, arg1 *tcms.AutomationRequest) (*tcms.Automation, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetOne", arg0, arg1)
+	ret0, _ := ret[0].(*tcms.Automation)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetOne indicates an expected call of GetOne.
+func (mr *MockTcmsServerMockRecorder) GetOne(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetOne", reflect.TypeOf((*MockTcmsServer)(nil).GetOne), arg0, arg1)
 }
 
 // GetTriggerList mocks base method.
