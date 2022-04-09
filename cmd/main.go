@@ -23,7 +23,7 @@ func main() {
 		log.Fatal("cannot load config:", err)
 	}
 
-	telegram, err := telegramClient.NewTelegram(config)
+	telegram, err := getTelegramClient(&config)
 	if err != nil {
 		panic(err)
 	}
@@ -50,5 +50,14 @@ func getTcmsClient(config *config2.Config) (tcms2.Tcms, error) {
 		return nil, err
 	}
 	tcms := tcms2.GetTcms(tcmsConn)
+	return tcms, nil
+}
+
+func getTelegramClient(config *config2.Config) (telegramClient.TelegramClient, error) {
+	conn, err := grpc.Dial(config.TelegramBridgeHost, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		return nil, err
+	}
+	tcms := telegramClient.GetTelegram(conn)
 	return tcms, nil
 }

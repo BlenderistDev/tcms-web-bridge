@@ -5,9 +5,7 @@ import (
 	"fmt"
 
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/protobuf/types/known/emptypb"
-	"tcms-web-bridge/internal/config"
 	"tcms-web-bridge/pkg/telegram"
 )
 
@@ -25,16 +23,14 @@ type telegramClient struct {
 	telegram telegram.TelegramClient
 }
 
-// NewTelegram create new telegram client
-func NewTelegram(config config.Config) (TelegramClient, error) {
-	conn, err := grpc.Dial(config.TelegramBridgeHost, grpc.WithTransportCredentials(insecure.NewCredentials()))
-	if err != nil {
-		return nil, err
-	}
+func newTelegram(tg telegram.TelegramClient) TelegramClient {
+	return &telegramClient{telegram: tg}
+}
 
+// GetTelegram create new telegram client
+func GetTelegram(conn *grpc.ClientConn) TelegramClient {
 	tg := telegram.NewTelegramClient(conn)
-
-	return &telegramClient{telegram: tg}, nil
+	return newTelegram(tg)
 }
 
 // Authorization request for authorization in telegram client
