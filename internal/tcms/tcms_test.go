@@ -137,6 +137,5 @@ func TestTcms_GetAutomation(t *testing.T) {
 
 func TestGetTcms(t *testing.T) {
 	conn := &grpc.ClientConn{}
-	_, err := GetTcms(conn)
-	dry.TestHandleError(t, err)
+	GetTcms(conn)
 }
