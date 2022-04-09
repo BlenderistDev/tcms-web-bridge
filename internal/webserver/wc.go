@@ -1,11 +1,11 @@
 package webserver
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
-	"tcms-web-bridge/internal/dry"
 )
 
 // getWcHandler handler for websockets
@@ -18,11 +18,11 @@ func getWcHandler(addConsumer chan chan []uint8) func(c *gin.Context) {
 		}
 
 		ws, err := upgrader.Upgrade(c.Writer, c.Request, nil)
-		dry.HandleError(err)
+		log.Println(err)
 
 		defer func(ws *websocket.Conn) {
 			err := ws.Close()
-			dry.HandleError(err)
+			log.Println(err)
 		}(ws)
 
 		ch := make(chan []uint8)
@@ -31,7 +31,7 @@ func getWcHandler(addConsumer chan chan []uint8) func(c *gin.Context) {
 		for {
 			data := <-ch
 			err = ws.WriteMessage(websocket.TextMessage, data)
-			dry.HandleError(err)
+			log.Println(err)
 		}
 	}
 }

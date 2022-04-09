@@ -4,7 +4,6 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"tcms-web-bridge/internal/config"
-	"tcms-web-bridge/internal/dry"
 	"tcms-web-bridge/internal/tcms"
 	"tcms-web-bridge/internal/telegramClient"
 )
@@ -31,20 +30,32 @@ func StartWebServer(config config.Config, telegramClient telegramClient.Telegram
 	router.POST("/login", func(c *gin.Context) {
 		var loginData loginData
 		err := c.BindJSON(&loginData)
-		dry.HandleError(err)
+		if err != nil {
+			_ = c.Error(err)
+			return
+		}
 
 		err = telegramClient.Authorization(loginData.Phone)
-		dry.HandleError(err)
+		if err != nil {
+			_ = c.Error(err)
+			return
+		}
 		c.JSON(200, gin.H{"status": "ok"})
 	})
 
 	router.POST("/sign", func(c *gin.Context) {
 		var signData signData
 		err := c.BindJSON(&signData)
-		dry.HandleError(err)
+		if err != nil {
+			_ = c.Error(err)
+			return
+		}
 
 		err = telegramClient.AuthSignIn(signData.Code)
-		dry.HandleError(err)
+		if err != nil {
+			_ = c.Error(err)
+			return
+		}
 
 		c.JSON(200, gin.H{"status": "ok"})
 	})

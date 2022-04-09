@@ -3,7 +3,6 @@ package webserver
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/golang/protobuf/jsonpb"
-	"tcms-web-bridge/internal/dry"
 	"tcms-web-bridge/internal/tcms"
 	"tcms-web-bridge/internal/telegramClient"
 	tcms2 "tcms-web-bridge/pkg/tcms"
@@ -19,12 +18,18 @@ type sendMessageData struct {
 func getCurrentUser(telegramClient telegramClient.TelegramClient) func(c *gin.Context) {
 	return func(c *gin.Context) {
 		user, err := telegramClient.GetCurrentUser()
-		dry.HandleError(err)
+		if err != nil {
+			_ = c.Error(err)
+			return
+		}
 		m := jsonpb.Marshaler{
 			EmitDefaults: true,
 		}
 		s, err := m.MarshalToString(user)
-		dry.HandleError(err)
+		if err != nil {
+			_ = c.Error(err)
+			return
+		}
 		c.JSON(200, s)
 	}
 }
@@ -34,10 +39,16 @@ func sendMessage(telegramClient telegramClient.TelegramClient) func(c *gin.Conte
 	return func(c *gin.Context) {
 		var messageData sendMessageData
 		err := c.BindJSON(&messageData)
-		dry.HandleError(err)
+		if err != nil {
+			_ = c.Error(err)
+			return
+		}
 
 		err = telegramClient.SendMessage(string(messageData.Id), messageData.Message)
-		dry.HandleError(err)
+		if err != nil {
+			_ = c.Error(err)
+			return
+		}
 
 		c.JSON(200, gin.H{"status": "ok"})
 	}
@@ -47,12 +58,18 @@ func sendMessage(telegramClient telegramClient.TelegramClient) func(c *gin.Conte
 func getDialogs(telegramClient telegramClient.TelegramClient) func(c *gin.Context) {
 	return func(c *gin.Context) {
 		dialogs, err := telegramClient.Dialogs()
-		dry.HandleError(err)
+		if err != nil {
+			_ = c.Error(err)
+			return
+		}
 		m := jsonpb.Marshaler{
 			EmitDefaults: true,
 		}
 		s, err := m.MarshalToString(dialogs)
-		dry.HandleError(err)
+		if err != nil {
+			_ = c.Error(err)
+			return
+		}
 		c.JSON(200, s)
 	}
 }
