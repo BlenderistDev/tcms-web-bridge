@@ -25,6 +25,7 @@ type telegramClient struct {
 	telegram telegram.TelegramClient
 }
 
+// NewTelegram create new telegram client
 func NewTelegram(config config.Config) (TelegramClient, error) {
 	conn, err := grpc.Dial(config.TelegramBridgeHost, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
@@ -36,23 +37,27 @@ func NewTelegram(config config.Config) (TelegramClient, error) {
 	return &telegramClient{telegram: tg}, nil
 }
 
+// Authorization request for authorization in telegram client
 func (t *telegramClient) Authorization(phone string) error {
 	_, err := t.telegram.Login(context.Background(), &telegram.LoginMessage{Phone: phone})
 	return err
 }
 
+// AuthSignIn request for sign in telegram client with auth code
 func (t *telegramClient) AuthSignIn(code string) error {
 	_, err := t.telegram.Sign(context.Background(), &telegram.SignMessage{Code: code})
 
 	return err
 }
 
+// GetCurrentUser return current telegram user
 func (t *telegramClient) GetCurrentUser() (*telegram.User, error) {
 	request := telegram.GetUserRequest{Peer: "me"}
 	user, err := t.telegram.GetUser(context.Background(), &request)
 	return user.GetUser(), err
 }
 
+// Dialogs return telegram dialogs
 func (t *telegramClient) Dialogs() (*telegram.DialogsResponse, error) {
 	dialogs, err := t.telegram.GetDialogs(context.Background(), &emptypb.Empty{})
 	if err != nil {
@@ -61,6 +66,7 @@ func (t *telegramClient) Dialogs() (*telegram.DialogsResponse, error) {
 	return dialogs, nil
 }
 
+// SendMessage send message throw telegram
 func (t *telegramClient) SendMessage(peer, message string) error {
 	request := telegram.SendMessageRequest{
 		Peer:    peer,
@@ -72,6 +78,7 @@ func (t *telegramClient) SendMessage(peer, message string) error {
 	return err
 }
 
+// MuteUser mute or unmute telegram user
 func (t telegramClient) MuteUser(id, accessHash string, unMute bool) error {
 	request := telegram.MuteUserRequest{
 		Id:         id,
@@ -91,6 +98,7 @@ func (t telegramClient) MuteUser(id, accessHash string, unMute bool) error {
 	return nil
 }
 
+// MuteChat mute or unmute telegram chat
 func (t telegramClient) MuteChat(id string, unMute bool) error {
 	request := telegram.MuteChatRequest{
 		Id:     id,

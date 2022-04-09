@@ -9,6 +9,7 @@ import (
 	"tcms-web-bridge/internal/config"
 )
 
+// CreateKafkaSubscription create subscription for kafka topic
 func CreateKafkaSubscription(config config.Config, addConsumer chan chan []uint8, errChan chan error, quit chan bool) {
 	var consumers []chan []uint8
 

@@ -17,6 +17,7 @@ type signData struct {
 	Code string `json:"code" binding:"required"`
 }
 
+// StartWebServer start web server
 func StartWebServer(config config.Config, telegramClient telegramClient.TelegramClient, tcms tcms.Tcms, addConsumer chan chan []uint8) {
 	router := gin.Default()
 

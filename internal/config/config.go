@@ -2,6 +2,7 @@ package config
 
 import "github.com/spf13/viper"
 
+// Config service config
 type Config struct {
 	ApiHost            string `mapstructure:"API_HOST"`
 	TelegramBridgeHost string `mapstructure:"TELEGRAM_BRIDGE_HOST"`
@@ -11,6 +12,7 @@ type Config struct {
 	KafkaGroupId       string `mapstructure:"KAFKA_GROUP_ID"`
 }
 
+// LoadConfig load service config
 func LoadConfig(path string) (config Config, err error) {
 	viper.AddConfigPath(path)
 	viper.SetConfigFile(".env")
