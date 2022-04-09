@@ -140,3 +140,21 @@ func updateAutomation(tcms tcms.Tcms) func(c *gin.Context) {
 		c.JSON(200, gin.H{"status": "ok"})
 	}
 }
+
+// removeAutomation DELETE /automation
+func removeAutomation(tcms tcms.Tcms) func(c *gin.Context) {
+	return func(c *gin.Context) {
+		var request tcms2.RemoveAutomationRequest
+
+		if err := c.BindJSON(&request); err != nil {
+			_ = c.Error(err)
+			return
+		}
+
+		if err := tcms.RemoveAutomation(c, &request); err != nil {
+			_ = c.Error(err)
+			return
+		}
+		c.JSON(200, gin.H{"status": "ok"})
+	}
+}

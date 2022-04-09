@@ -63,6 +63,9 @@ func StartWebServer(config config.Config, telegramClient telegramClient.Telegram
 	// PATCH
 	router.PATCH("/automation", updateAutomation(tcms))
 
+	// DELETE
+	router.DELETE("/automation", removeAutomation(tcms))
+
 	// websockets
 	router.GET("/ws", getWcHandler(addConsumer))
 
