@@ -16,6 +16,7 @@ type Tcms interface {
 	GetTriggers(ctx context.Context) (*tcms2.TriggerList, error)
 	GetAutomations(ctx context.Context) (*tcms2.AutomationList, error)
 	AddAutomation(ctx context.Context, automation *tcms2.Automation) error
+	UpdateAutomation(ctx context.Context, request *tcms2.UpdateAutomationRequest) error
 }
 
 type tcms struct {
@@ -40,6 +41,11 @@ func (t tcms) GetAutomations(ctx context.Context) (*tcms2.AutomationList, error)
 
 func (t tcms) AddAutomation(ctx context.Context, automation *tcms2.Automation) error {
 	_, err := t.client.AddAutomation(ctx, automation)
+	return err
+}
+
+func (t tcms) UpdateAutomation(ctx context.Context, request *tcms2.UpdateAutomationRequest) error {
+	_, err := t.client.UpdateAutomation(ctx, request)
 	return err
 }
 

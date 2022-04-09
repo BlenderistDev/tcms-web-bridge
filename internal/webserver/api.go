@@ -122,3 +122,21 @@ func addAutomation(tcms tcms.Tcms) func(c *gin.Context) {
 		c.JSON(200, gin.H{"status": "ok"})
 	}
 }
+
+// updateAutomation PATCH /automation
+func updateAutomation(tcms tcms.Tcms) func(c *gin.Context) {
+	return func(c *gin.Context) {
+		var request tcms2.UpdateAutomationRequest
+
+		if err := c.BindJSON(&request); err != nil {
+			_ = c.Error(err)
+			return
+		}
+
+		if err := tcms.UpdateAutomation(c, &request); err != nil {
+			_ = c.Error(err)
+			return
+		}
+		c.JSON(200, gin.H{"status": "ok"})
+	}
+}
