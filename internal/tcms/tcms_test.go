@@ -116,3 +116,20 @@ func TestTcms_RemoveAutomation(t *testing.T) {
 	err := tcms.RemoveAutomation(ctx, request)
 	dry.TestHandleError(t, err)
 }
+
+func TestTcms_GetAutomation(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+
+	ctx := context.Background()
+	request := &tcms2.AutomationRequest{}
+
+	automation := &tcms2.Automation{}
+
+	c := mock_tcms.NewMockTcmsClient(ctrl)
+	c.EXPECT().GetOne(gomock.Eq(ctx), gomock.Eq(request)).Return(automation, nil)
+	tcms := NewTcms(c)
+	res, err := tcms.GetAutomation(ctx, request)
+	dry.TestHandleError(t, err)
+	dry.TestCheckEqual(t, automation, res)
+}

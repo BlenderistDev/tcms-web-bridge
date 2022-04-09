@@ -158,3 +158,20 @@ func removeAutomation(tcms tcms.Tcms) func(c *gin.Context) {
 		c.JSON(200, gin.H{"status": "ok"})
 	}
 }
+
+// getAutomation GET /automation/:id
+func getAutomation(tcms tcms.Tcms) func(c *gin.Context) {
+	return func(c *gin.Context) {
+		id := c.Param("id")
+
+		request := tcms2.AutomationRequest{Id: id}
+
+		res, err := tcms.GetAutomation(c, &request)
+		if err != nil {
+			_ = c.Error(err)
+			return
+		}
+
+		c.JSON(200, res)
+	}
+}

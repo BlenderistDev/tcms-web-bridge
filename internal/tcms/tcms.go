@@ -18,6 +18,7 @@ type Tcms interface {
 	AddAutomation(ctx context.Context, automation *tcms2.Automation) error
 	UpdateAutomation(ctx context.Context, request *tcms2.UpdateAutomationRequest) error
 	RemoveAutomation(ctx context.Context, request *tcms2.RemoveAutomationRequest) error
+	GetAutomation(ctx context.Context, request *tcms2.AutomationRequest) (*tcms2.Automation, error)
 }
 
 type tcms struct {
@@ -53,6 +54,11 @@ func (t tcms) UpdateAutomation(ctx context.Context, request *tcms2.UpdateAutomat
 func (t tcms) RemoveAutomation(ctx context.Context, request *tcms2.RemoveAutomationRequest) error {
 	_, err := t.client.RemoveAutomation(ctx, request)
 	return err
+}
+
+func (t tcms) GetAutomation(ctx context.Context, request *tcms2.AutomationRequest) (*tcms2.Automation, error) {
+	res, err := t.client.GetOne(ctx, request)
+	return res, err
 }
 
 func NewTcms(client tcms2.TcmsClient) Tcms {

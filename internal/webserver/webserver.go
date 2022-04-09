@@ -55,6 +55,7 @@ func StartWebServer(config config.Config, telegramClient telegramClient.Telegram
 	router.GET("/action", getActions(tcms))
 	router.GET("/automation", getAutomations(tcms))
 	router.GET("/trigger", getTriggers(tcms))
+	router.GET("/automation/:id", getAutomation(tcms))
 
 	// POST
 	router.POST("/message", sendMessage(telegramClient))
