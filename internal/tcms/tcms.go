@@ -8,6 +8,7 @@ import (
 	tcms2 "tcms-web-bridge/pkg/tcms"
 )
 
+// Tcms interface for tcms client
 type Tcms interface {
 	GetActions(ctx context.Context) (*tcms2.ActionList, error)
 	GetConditions(ctx context.Context) (*tcms2.ConditionList, error)
