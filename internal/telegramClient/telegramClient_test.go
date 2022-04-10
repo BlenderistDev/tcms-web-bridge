@@ -6,6 +6,7 @@ import (
 
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
+	"google.golang.org/protobuf/types/known/emptypb"
 	mock_telegram "tcms-web-bridge/internal/testing/telegram"
 	"tcms-web-bridge/pkg/telegram"
 )
@@ -58,4 +59,21 @@ func TestTelegramClient_GetCurrentUser(t *testing.T) {
 	res, err := tg.GetCurrentUser(ctx)
 	assert.Nil(t, err)
 	assert.Equal(t, user, res)
+}
+
+func TestTelegramClient_Dialogs(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+
+	ctx := context.Background()
+	request := &emptypb.Empty{}
+	response := &telegram.DialogsResponse{}
+
+	client := mock_telegram.NewMockTelegramClient(ctrl)
+	client.EXPECT().GetDialogs(gomock.Eq(ctx), gomock.Eq(request)).Return(response, nil)
+
+	tg := newTelegram(client)
+	res, err := tg.Dialogs(ctx)
+	assert.Nil(t, err)
+	assert.Equal(t, response, res)
 }

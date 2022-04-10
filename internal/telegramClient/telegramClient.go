@@ -13,7 +13,7 @@ type TelegramClient interface {
 	Authorization(ctx context.Context, phone string) error
 	AuthSignIn(ctx context.Context, code string) error
 	GetCurrentUser(ctx context.Context) (*telegram.User, error)
-	Dialogs() (*telegram.DialogsResponse, error)
+	Dialogs(ctx context.Context) (*telegram.DialogsResponse, error)
 	SendMessage(peer, message string) error
 	MuteUser(id, accessHash string, unMute bool) error
 	MuteChat(id string, unMute bool) error
@@ -42,7 +42,6 @@ func (t *telegramClient) Authorization(ctx context.Context, phone string) error 
 // AuthSignIn request for sign in telegram client with auth code
 func (t *telegramClient) AuthSignIn(ctx context.Context, code string) error {
 	_, err := t.telegram.Sign(ctx, &telegram.SignMessage{Code: code})
-
 	return err
 }
 
@@ -54,12 +53,8 @@ func (t *telegramClient) GetCurrentUser(ctx context.Context) (*telegram.User, er
 }
 
 // Dialogs return telegram dialogs
-func (t *telegramClient) Dialogs() (*telegram.DialogsResponse, error) {
-	dialogs, err := t.telegram.GetDialogs(context.Background(), &emptypb.Empty{})
-	if err != nil {
-		return nil, err
-	}
-	return dialogs, nil
+func (t *telegramClient) Dialogs(ctx context.Context) (*telegram.DialogsResponse, error) {
+	return t.telegram.GetDialogs(ctx, &emptypb.Empty{})
 }
 
 // SendMessage send message throw telegram

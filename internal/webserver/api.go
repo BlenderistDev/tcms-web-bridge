@@ -57,7 +57,7 @@ func sendMessage(telegramClient telegramClient.TelegramClient) func(c *gin.Conte
 // getDialogs GET /dialogs
 func getDialogs(telegramClient telegramClient.TelegramClient) func(c *gin.Context) {
 	return func(c *gin.Context) {
-		dialogs, err := telegramClient.Dialogs()
+		dialogs, err := telegramClient.Dialogs(c)
 		if err != nil {
 			_ = c.Error(err)
 			return
