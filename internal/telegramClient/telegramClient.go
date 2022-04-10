@@ -12,7 +12,7 @@ import (
 type TelegramClient interface {
 	Authorization(ctx context.Context, phone string) error
 	AuthSignIn(ctx context.Context, code string) error
-	GetCurrentUser() (*telegram.User, error)
+	GetCurrentUser(ctx context.Context) (*telegram.User, error)
 	Dialogs() (*telegram.DialogsResponse, error)
 	SendMessage(peer, message string) error
 	MuteUser(id, accessHash string, unMute bool) error
@@ -47,9 +47,9 @@ func (t *telegramClient) AuthSignIn(ctx context.Context, code string) error {
 }
 
 // GetCurrentUser return current telegram user
-func (t *telegramClient) GetCurrentUser() (*telegram.User, error) {
+func (t *telegramClient) GetCurrentUser(ctx context.Context) (*telegram.User, error) {
 	request := telegram.GetUserRequest{Peer: "me"}
-	user, err := t.telegram.GetUser(context.Background(), &request)
+	user, err := t.telegram.GetUser(ctx, &request)
 	return user.GetUser(), err
 }
 

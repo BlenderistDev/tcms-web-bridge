@@ -17,7 +17,7 @@ type sendMessageData struct {
 // getCurrentUser GET /me
 func getCurrentUser(telegramClient telegramClient.TelegramClient) func(c *gin.Context) {
 	return func(c *gin.Context) {
-		user, err := telegramClient.GetCurrentUser()
+		user, err := telegramClient.GetCurrentUser(c)
 		if err != nil {
 			_ = c.Error(err)
 			return

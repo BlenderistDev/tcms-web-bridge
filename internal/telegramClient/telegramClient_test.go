@@ -41,3 +41,21 @@ func TestTelegramClient_AuthSignIn(t *testing.T) {
 	err := tg.AuthSignIn(ctx, code)
 	assert.Nil(t, err)
 }
+
+func TestTelegramClient_GetCurrentUser(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+
+	ctx := context.Background()
+	request := &telegram.GetUserRequest{Peer: "me"}
+	user := &telegram.User{}
+	response := &telegram.UserResponse{User: user}
+
+	client := mock_telegram.NewMockTelegramClient(ctrl)
+	client.EXPECT().GetUser(gomock.Eq(ctx), gomock.Eq(request)).Return(response, nil)
+
+	tg := newTelegram(client)
+	res, err := tg.GetCurrentUser(ctx)
+	assert.Nil(t, err)
+	assert.Equal(t, user, res)
+}
