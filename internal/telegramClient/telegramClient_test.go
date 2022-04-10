@@ -77,3 +77,25 @@ func TestTelegramClient_Dialogs(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, response, res)
 }
+
+func TestTelegramClient_SendMessage(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+
+	const (
+		peer    = "peer"
+		message = "message"
+	)
+	request := &telegram.SendMessageRequest{
+		Peer:    peer,
+		Message: message,
+	}
+	ctx := context.Background()
+
+	client := mock_telegram.NewMockTelegramClient(ctrl)
+	client.EXPECT().Send(gomock.Eq(ctx), gomock.Eq(request))
+
+	tg := newTelegram(client)
+	err := tg.SendMessage(ctx, peer, message)
+	assert.Nil(t, err)
+}

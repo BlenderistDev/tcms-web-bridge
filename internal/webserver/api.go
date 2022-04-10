@@ -44,7 +44,7 @@ func sendMessage(telegramClient telegramClient.TelegramClient) func(c *gin.Conte
 			return
 		}
 
-		err = telegramClient.SendMessage(string(messageData.Id), messageData.Message)
+		err = telegramClient.SendMessage(c, string(messageData.Id), messageData.Message)
 		if err != nil {
 			_ = c.Error(err)
 			return
