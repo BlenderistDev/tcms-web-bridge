@@ -35,7 +35,7 @@ func StartWebServer(config config.Config, telegramClient telegramClient.Telegram
 			return
 		}
 
-		err = telegramClient.Authorization(loginData.Phone)
+		err = telegramClient.Authorization(c, loginData.Phone)
 		if err != nil {
 			_ = c.Error(err)
 			return
@@ -51,7 +51,7 @@ func StartWebServer(config config.Config, telegramClient telegramClient.Telegram
 			return
 		}
 
-		err = telegramClient.AuthSignIn(signData.Code)
+		err = telegramClient.AuthSignIn(c, signData.Code)
 		if err != nil {
 			_ = c.Error(err)
 			return

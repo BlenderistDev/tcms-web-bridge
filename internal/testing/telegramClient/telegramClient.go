@@ -5,6 +5,7 @@
 package mock_telegramClient
 
 import (
+	context "context"
 	reflect "reflect"
 	telegram "tcms-web-bridge/pkg/telegram"
 
@@ -35,31 +36,31 @@ func (m *MockTelegramClient) EXPECT() *MockTelegramClientMockRecorder {
 }
 
 // AuthSignIn mocks base method.
-func (m *MockTelegramClient) AuthSignIn(code string) error {
+func (m *MockTelegramClient) AuthSignIn(ctx context.Context, code string) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "AuthSignIn", code)
+	ret := m.ctrl.Call(m, "AuthSignIn", ctx, code)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // AuthSignIn indicates an expected call of AuthSignIn.
-func (mr *MockTelegramClientMockRecorder) AuthSignIn(code interface{}) *gomock.Call {
+func (mr *MockTelegramClientMockRecorder) AuthSignIn(ctx, code interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AuthSignIn", reflect.TypeOf((*MockTelegramClient)(nil).AuthSignIn), code)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AuthSignIn", reflect.TypeOf((*MockTelegramClient)(nil).AuthSignIn), ctx, code)
 }
 
 // Authorization mocks base method.
-func (m *MockTelegramClient) Authorization(phone string) error {
+func (m *MockTelegramClient) Authorization(ctx context.Context, phone string) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Authorization", phone)
+	ret := m.ctrl.Call(m, "Authorization", ctx, phone)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // Authorization indicates an expected call of Authorization.
-func (mr *MockTelegramClientMockRecorder) Authorization(phone interface{}) *gomock.Call {
+func (mr *MockTelegramClientMockRecorder) Authorization(ctx, phone interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Authorization", reflect.TypeOf((*MockTelegramClient)(nil).Authorization), phone)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Authorization", reflect.TypeOf((*MockTelegramClient)(nil).Authorization), ctx, phone)
 }
 
 // Dialogs mocks base method.

@@ -22,6 +22,9 @@ gen-telegram:
 	@protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative proto/telegram.proto
 	@mv proto/telegram*.go pkg/telegram/
 
+gen-telegram-mock:
+	@mockgen -source=pkg/telegram/telegram_grpc.pb.go -destination=internal/testing/telegram/telegram_grpc.pb.go
+
 gen-tcms:
 	@protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative proto/tcms.proto
 	@mv proto/tcms*.go pkg/tcms/
@@ -31,4 +34,5 @@ gen:
 	@make gen-telegram
 	@make gen-telegramclient-mock
 	@make gen-tcms-mock
+	@make gen-telegram-mock
 

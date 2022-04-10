@@ -10,8 +10,8 @@ import (
 )
 
 type TelegramClient interface {
-	Authorization(phone string) error
-	AuthSignIn(code string) error
+	Authorization(ctx context.Context, phone string) error
+	AuthSignIn(ctx context.Context, code string) error
 	GetCurrentUser() (*telegram.User, error)
 	Dialogs() (*telegram.DialogsResponse, error)
 	SendMessage(peer, message string) error
@@ -34,14 +34,14 @@ func GetTelegram(conn *grpc.ClientConn) TelegramClient {
 }
 
 // Authorization request for authorization in telegram client
-func (t *telegramClient) Authorization(phone string) error {
-	_, err := t.telegram.Login(context.Background(), &telegram.LoginMessage{Phone: phone})
+func (t *telegramClient) Authorization(ctx context.Context, phone string) error {
+	_, err := t.telegram.Login(ctx, &telegram.LoginMessage{Phone: phone})
 	return err
 }
 
 // AuthSignIn request for sign in telegram client with auth code
-func (t *telegramClient) AuthSignIn(code string) error {
-	_, err := t.telegram.Sign(context.Background(), &telegram.SignMessage{Code: code})
+func (t *telegramClient) AuthSignIn(ctx context.Context, code string) error {
+	_, err := t.telegram.Sign(ctx, &telegram.SignMessage{Code: code})
 
 	return err
 }
