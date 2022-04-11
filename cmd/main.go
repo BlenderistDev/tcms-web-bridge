@@ -58,6 +58,6 @@ func getTelegramClient(config *config2.Config) (telegramClient.TelegramClient, e
 	if err != nil {
 		return nil, err
 	}
-	tcms := telegramClient.GetTelegram(conn)
-	return tcms, nil
+	tg := telegramClient.GetTelegram(conn)
+	return tg, nil
 }

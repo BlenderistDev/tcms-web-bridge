@@ -6,6 +6,8 @@ import (
 
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/protobuf/types/known/emptypb"
 	mock_telegram "tcms-web-bridge/internal/testing/telegram"
 	"tcms-web-bridge/pkg/telegram"
@@ -98,4 +100,10 @@ func TestTelegramClient_SendMessage(t *testing.T) {
 	tg := newTelegram(client)
 	err := tg.SendMessage(ctx, peer, message)
 	assert.Nil(t, err)
+}
+
+func TestGetTelegram(t *testing.T) {
+	conn, err := grpc.Dial("host", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	assert.Nil(t, err)
+	_ = GetTelegram(conn)
 }
