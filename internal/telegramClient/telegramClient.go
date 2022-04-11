@@ -2,7 +2,6 @@ package telegramClient
 
 import (
 	"context"
-	"fmt"
 
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/emptypb"
@@ -15,8 +14,6 @@ type TelegramClient interface {
 	GetCurrentUser(ctx context.Context) (*telegram.User, error)
 	Dialogs(ctx context.Context) (*telegram.DialogsResponse, error)
 	SendMessage(ctx context.Context, peer, message string) error
-	MuteUser(id, accessHash string, unMute bool) error
-	MuteChat(id string, unMute bool) error
 }
 
 type telegramClient struct {
@@ -67,43 +64,4 @@ func (t *telegramClient) SendMessage(ctx context.Context, peer, message string) 
 	_, err := t.telegram.Send(ctx, request)
 
 	return err
-}
-
-// MuteUser mute or unmute telegram user
-func (t telegramClient) MuteUser(id, accessHash string, unMute bool) error {
-	request := telegram.MuteUserRequest{
-		Id:         id,
-		AccessHash: accessHash,
-		Unmute:     unMute,
-	}
-	res, err := t.telegram.MuteUser(context.Background(), &request)
-
-	if err != nil {
-		return err
-	}
-
-	if !res.GetSuccess() {
-		return fmt.Errorf("error while setting user notify settings")
-	}
-
-	return nil
-}
-
-// MuteChat mute or unmute telegram chat
-func (t telegramClient) MuteChat(id string, unMute bool) error {
-	request := telegram.MuteChatRequest{
-		Id:     id,
-		Unmute: unMute,
-	}
-	res, err := t.telegram.MuteChat(context.Background(), &request)
-
-	if err != nil {
-		return err
-	}
-
-	if !res.GetSuccess() {
-		return fmt.Errorf("error while setting chat notify settings")
-	}
-
-	return nil
 }
