@@ -64,73 +64,45 @@ func (mr *MockTelegramClientMockRecorder) Authorization(ctx, phone interface{}) 
 }
 
 // Dialogs mocks base method.
-func (m *MockTelegramClient) Dialogs() (*telegram.DialogsResponse, error) {
+func (m *MockTelegramClient) Dialogs(ctx context.Context) (*telegram.DialogsResponse, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Dialogs")
+	ret := m.ctrl.Call(m, "Dialogs", ctx)
 	ret0, _ := ret[0].(*telegram.DialogsResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // Dialogs indicates an expected call of Dialogs.
-func (mr *MockTelegramClientMockRecorder) Dialogs() *gomock.Call {
+func (mr *MockTelegramClientMockRecorder) Dialogs(ctx interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Dialogs", reflect.TypeOf((*MockTelegramClient)(nil).Dialogs))
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Dialogs", reflect.TypeOf((*MockTelegramClient)(nil).Dialogs), ctx)
 }
 
 // GetCurrentUser mocks base method.
-func (m *MockTelegramClient) GetCurrentUser() (*telegram.User, error) {
+func (m *MockTelegramClient) GetCurrentUser(ctx context.Context) (*telegram.User, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetCurrentUser")
+	ret := m.ctrl.Call(m, "GetCurrentUser", ctx)
 	ret0, _ := ret[0].(*telegram.User)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // GetCurrentUser indicates an expected call of GetCurrentUser.
-func (mr *MockTelegramClientMockRecorder) GetCurrentUser() *gomock.Call {
+func (mr *MockTelegramClientMockRecorder) GetCurrentUser(ctx interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCurrentUser", reflect.TypeOf((*MockTelegramClient)(nil).GetCurrentUser))
-}
-
-// MuteChat mocks base method.
-func (m *MockTelegramClient) MuteChat(id string, unMute bool) error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "MuteChat", id, unMute)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-// MuteChat indicates an expected call of MuteChat.
-func (mr *MockTelegramClientMockRecorder) MuteChat(id, unMute interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "MuteChat", reflect.TypeOf((*MockTelegramClient)(nil).MuteChat), id, unMute)
-}
-
-// MuteUser mocks base method.
-func (m *MockTelegramClient) MuteUser(id, accessHash string, unMute bool) error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "MuteUser", id, accessHash, unMute)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-// MuteUser indicates an expected call of MuteUser.
-func (mr *MockTelegramClientMockRecorder) MuteUser(id, accessHash, unMute interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "MuteUser", reflect.TypeOf((*MockTelegramClient)(nil).MuteUser), id, accessHash, unMute)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetCurrentUser", reflect.TypeOf((*MockTelegramClient)(nil).GetCurrentUser), ctx)
 }
 
 // SendMessage mocks base method.
-func (m *MockTelegramClient) SendMessage(peer, message string) error {
+func (m *MockTelegramClient) SendMessage(ctx context.Context, peer, message string) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "SendMessage", peer, message)
+	ret := m.ctrl.Call(m, "SendMessage", ctx, peer, message)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // SendMessage indicates an expected call of SendMessage.
-func (mr *MockTelegramClientMockRecorder) SendMessage(peer, message interface{}) *gomock.Call {
+func (mr *MockTelegramClientMockRecorder) SendMessage(ctx, peer, message interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SendMessage", reflect.TypeOf((*MockTelegramClient)(nil).SendMessage), peer, message)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SendMessage", reflect.TypeOf((*MockTelegramClient)(nil).SendMessage), ctx, peer, message)
 }
