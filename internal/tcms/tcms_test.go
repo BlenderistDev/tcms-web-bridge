@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/golang/mock/gomock"
+	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"tcms-web-bridge/internal/dry"
@@ -25,7 +26,7 @@ func TestTcms_GetActions(t *testing.T) {
 	tcms := newTcms(c)
 	list, err := tcms.GetActions(ctx)
 	dry.TestCheckEqual(t, expected, list)
-	dry.TestHandleError(t, err)
+	assert.Nil(t, err)
 }
 
 func TestTcms_GetConditions(t *testing.T) {
@@ -41,7 +42,7 @@ func TestTcms_GetConditions(t *testing.T) {
 	tcms := newTcms(c)
 	list, err := tcms.GetConditions(ctx)
 	dry.TestCheckEqual(t, expected, list)
-	dry.TestHandleError(t, err)
+	assert.Nil(t, err)
 }
 
 func TestTcms_GetTriggers(t *testing.T) {
@@ -57,7 +58,7 @@ func TestTcms_GetTriggers(t *testing.T) {
 	tcms := newTcms(c)
 	list, err := tcms.GetTriggers(ctx)
 	dry.TestCheckEqual(t, expected, list)
-	dry.TestHandleError(t, err)
+	assert.Nil(t, err)
 }
 
 func TestTcms_GetAutomations(t *testing.T) {
@@ -73,7 +74,7 @@ func TestTcms_GetAutomations(t *testing.T) {
 	tcms := newTcms(c)
 	list, err := tcms.GetAutomations(ctx)
 	dry.TestCheckEqual(t, expected, list)
-	dry.TestHandleError(t, err)
+	assert.Nil(t, err)
 }
 
 func TestTcms_AddAutomation(t *testing.T) {
@@ -87,7 +88,7 @@ func TestTcms_AddAutomation(t *testing.T) {
 	c.EXPECT().AddAutomation(gomock.Eq(ctx), gomock.Eq(automation))
 	tcms := newTcms(c)
 	err := tcms.AddAutomation(ctx, automation)
-	dry.TestHandleError(t, err)
+	assert.Nil(t, err)
 }
 
 func TestTcms_UpdateAutomation(t *testing.T) {
@@ -101,7 +102,7 @@ func TestTcms_UpdateAutomation(t *testing.T) {
 	c.EXPECT().UpdateAutomation(gomock.Eq(ctx), gomock.Eq(request))
 	tcms := newTcms(c)
 	err := tcms.UpdateAutomation(ctx, request)
-	dry.TestHandleError(t, err)
+	assert.Nil(t, err)
 }
 
 func TestTcms_RemoveAutomation(t *testing.T) {
@@ -115,7 +116,7 @@ func TestTcms_RemoveAutomation(t *testing.T) {
 	c.EXPECT().RemoveAutomation(gomock.Eq(ctx), gomock.Eq(request))
 	tcms := newTcms(c)
 	err := tcms.RemoveAutomation(ctx, request)
-	dry.TestHandleError(t, err)
+	assert.Nil(t, err)
 }
 
 func TestTcms_GetAutomation(t *testing.T) {
@@ -131,7 +132,7 @@ func TestTcms_GetAutomation(t *testing.T) {
 	c.EXPECT().GetOne(gomock.Eq(ctx), gomock.Eq(request)).Return(automation, nil)
 	tcms := newTcms(c)
 	res, err := tcms.GetAutomation(ctx, request)
-	dry.TestHandleError(t, err)
+	assert.Nil(t, err)
 	dry.TestCheckEqual(t, automation, res)
 }
 
